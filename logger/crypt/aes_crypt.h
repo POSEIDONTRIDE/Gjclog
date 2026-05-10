@@ -20,7 +20,6 @@ class AESCrypt final : public Crypt {
 
  private:
   std::string key_;
-  std::string iv_;
 };
 
 }  // namespace crypt

@@ -12,3 +12,9 @@ target_link_libraries(crypt_example logger)
 
 add_executable(zstd_example zstd_example.cc)
 target_link_libraries(zstd_example logger)
+
+add_executable(perf_test perf_test.cc)
+target_link_libraries(perf_test logger)
+
+add_executable(compress_benchmark compress_benchmark.cc)
+target_link_libraries(compress_benchmark logger)

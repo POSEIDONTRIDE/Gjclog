@@ -76,14 +76,16 @@ class EffectiveSink final : public LogSink {
   std::unique_ptr<Formatter> formatter_;
   ctx::TaskRunnerTag task_runner_;
   std::unique_ptr<crypt::Crypt> crypt_;
-  std::unique_ptr<compress::Compression> compress_;
   std::unique_ptr<MMapAux> master_cache_;
   std::unique_ptr<MMapAux> slave_cache_;
   std::filesystem::path log_file_path_;
   std::string client_pub_key_;
-  std::string compressed_buf_;
-  std::string encryped_buf_;
   std::atomic<bool> is_slave_free_{true};
+  // Sidecar key files: persist which client pub key was used to encrypt data
+  // currently sitting in each mmap cache. Enables correct ChunkHeader on crash recovery.
+  std::filesystem::path master_key_path_;
+  std::filesystem::path slave_key_path_;
+  std::string slave_cache_pub_key_;  // pub key for data currently in slave_cache_
 };
 
 }  // namespace logger
